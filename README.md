@@ -1,82 +1,97 @@
-# Agent skills (skills.sh)
+# kaynetik-skills
 
-This directory holds [Agent Skills](https://agentskills.io)-compatible packages for use with the [`skills` CLI](https://github.com/vercel-labs/skills) and the [skills.sh](https://skills.sh/) ecosystem.
+[Agent Skills](https://agentskills.io)-compatible packages for the [`skills` CLI](https://github.com/vercel-labs/skills) and [skills.sh](https://skills.sh/). Each top-level directory here is one installable skill (`SKILL.md` at its root).
 
-## Layout
+## Table of contents
 
-Each skill is a folder with a `SKILL.md` at its root (plus optional files such as `examples.md`):
+- [Skills in this repo](#skills-in-this-repo)
+- [Repository layout](#repository-layout)
+- [Requirements](#requirements)
+- [Install](#install)
+- [Publish on GitHub](#publish-on-github)
+- [Validate (optional)](#validate-optional)
+- [References](#references)
+
+## Skills in this repo
+
+| Directory | `name` (frontmatter) | Summary |
+| :--- | :--- | :--- |
+| [`tdd-red-green-refactor`](tdd-red-green-refactor/SKILL.md) | `tdd-red-green-refactor` | Red-Green-Refactor TDD: failing test first, minimal pass, refactor; bug fixes, features, regression prevention. |
+| [`ultimate-nixos`](ultimate-nixos/SKILL.md) | `ultimate-nixos` | Nixpkgs maintainer and committer workflow: PRs, OfBorg, `nixpkgs-review`, merge bot, r-ryantm, staging and backports, plus how nix-darwin and Home Manager relate to nixpkgs. Optional detail in [`ultimate-nixos/reference.md`](ultimate-nixos/reference.md). |
+
+The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
+
+## Repository layout
 
 ```text
-skills/
-  README.md                      # this file
+kaynetik-skills/
+  README.md
+  LICENSE
   tdd-red-green-refactor/
-    SKILL.md                     # required: YAML frontmatter + body
-    references/                  # optional: on-demand docs (Agent Skills layout)
+    SKILL.md
+    references/
       examples.md
+  ultimate-nixos/
+    SKILL.md
+    reference.md
 ```
 
-Discovery paths follow the CLI rules documented in [skills CLI - Creating Skills](https://github.com/vercel-labs/skills#creating-skills). This repo uses the `skills/<skill-name>/` layout.
+Discovery follows the layout rules in [Creating Skills](https://github.com/vercel-labs/skills#creating-skills) for the `skills` CLI.
 
-## Requirements (checklist)
+## Requirements
 
-Each `SKILL.md` must include YAML frontmatter with:
+Each `SKILL.md` needs YAML frontmatter with:
 
-- `name` -- lowercase identifier (e.g. `tdd-red-green-refactor`); **[must match the parent folder name](https://agentskills.io/specification.md)** (1 to 64 chars, `a-z`, digits, single hyphens; no leading or trailing hyphen, no `--` in the name)
-- `description` -- 1 to 1024 chars; include **what** the skill does and **when** to use it (helps the agent pick it)
+- **`name`**: Lowercase identifier, 1 to 64 characters, `a-z`, digits, single hyphens only; no leading or trailing hyphen, no `--` in the name. Must match the directory name.
+- **`description`**: 1 to 1024 characters. State what the skill does and when the agent should use it (discovery depends on this).
 
-Optional frontmatter: `license`, `compatibility`, `metadata`, `allowed-tools` (experimental). See the [Agent Skills specification](https://agentskills.io/specification.md).
+Optional frontmatter: `license`, `compatibility`, `metadata`, `allowed-tools` (experimental). See the [spec](https://agentskills.io/specification.md).
 
-Optional frontmatter (see [CLI README](https://github.com/vercel-labs/skills)): `metadata.internal: true` to hide a WIP skill from default discovery when using `INSTALL_INTERNAL_SKILLS=1`.
+Optional: `metadata.internal: true` hides a WIP skill from default discovery when using `INSTALL_INTERNAL_SKILLS=1` (see [CLI README](https://github.com/vercel-labs/skills)).
 
-## Try locally
+Keep file references from `SKILL.md` one level deep where possible ([file references](https://agentskills.io/specification.md#file-references)).
 
-From the **repository root** (parent of `skills/`):
+## Install
+
+From a clone of this repository (repository root, where this `README.md` lives):
 
 ```bash
 npx skills add . --list
 ```
 
-Install this skill into your agents (example: Cursor, global):
+Install one skill into Cursor globally:
 
 ```bash
 npx skills add . --skill tdd-red-green-refactor -g -a cursor -y
+npx skills add . --skill ultimate-nixos -g -a cursor -y
 ```
 
-Replace `.` with a path to a clone of this repo if you are not inside it.
+Use the path to your clone instead of `.` if you are not in the repo root.
 
-## After you push to GitHub
+## Publish on GitHub
 
 Others can install with `owner/repo` shorthand:
 
 ```bash
-npx skills add YOUR_ORG/iac-candle --skill tdd-red-green-refactor
+npx skills add YOUR_GITHUB_USER/kaynetik-skills --skill tdd-red-green-refactor
+npx skills add YOUR_GITHUB_USER/kaynetik-skills --skill ultimate-nixos
 ```
 
-The [skills.sh leaderboard](https://skills.sh/) ranks skills using anonymous install telemetry from `npx skills add`; there is no separate upload step. Use a **public** repo if you want discovery via installs.
+The [skills.sh](https://skills.sh/) directory ranks skills from anonymous install telemetry from `npx skills add`; there is no separate upload step. Use a **public** repo if you want discovery through installs.
 
-## Publishing hygiene
+For directory hygiene: include a root `LICENSE` if you want clear redistribution terms.
 
-When making the repo public for the directory:
+## Validate (optional)
 
-- Add a **LICENSE** at the repository root if you want clear redistribution terms.
-- Keep each skill self-contained under `skills/<name>/`; keep file references **one level deep** from `SKILL.md` (see [spec: file references](https://agentskills.io/specification.md#file-references)).
-
-## Validate against the spec (optional)
-
-The [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) tool can validate frontmatter and naming:
+[skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-skills-ref validate ./skills/tdd-red-green-refactor
+skills-ref validate ./tdd-red-green-refactor
+skills-ref validate ./ultimate-nixos
 ```
-
-## Skills in this bundle
-
-| Skill | Summary |
-|-------|---------|
-| `tdd-red-green-refactor` | Red-Green-Refactor TDD, bug-first workflow, multi-language notes; see `tdd-red-green-refactor/SKILL.md`. |
 
 ## References
 
 - [skills.sh documentation](https://skills.sh/docs)
-- [vercel-labs/skills (CLI source and discovery rules)](https://github.com/vercel-labs/skills)
+- [vercel-labs/skills (CLI)](https://github.com/vercel-labs/skills)
 - [Agent Skills specification](https://agentskills.io/specification.md)
