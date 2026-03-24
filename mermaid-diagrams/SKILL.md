@@ -1,6 +1,6 @@
 ---
 name: mermaid-diagrams
-description: Generate professional, clean, and precise Mermaid diagrams from natural language or technical descriptions. Supports all Mermaid diagram types with proper theming, styling, and layout. Optionally converts output to Excalidraw format. Use when asked to diagram, visualize, chart, draw, map, or illustrate systems, flows, sequences, architectures, relationships, or data structures. Keywords: diagram, flowchart, sequence, class diagram, ER diagram, gitgraph, architecture, mind map, mermaid, excalidraw, visualize, draw, chart.
+description: "Generate professional, clean, and precise Mermaid diagrams from natural language or technical descriptions. Supports all Mermaid diagram types with proper theming, styling, and layout. Optionally converts output to Excalidraw format. Use when asked to diagram, visualize, chart, draw, map, or illustrate systems, flows, sequences, architectures, relationships, or data structures. Keywords: diagram, flowchart, sequence, class diagram, ER diagram, gitgraph, architecture, mind map, mermaid, excalidraw, visualize, draw, chart."
 ---
 
 # Mermaid Diagrams
