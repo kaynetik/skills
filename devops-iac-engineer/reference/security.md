@@ -31,9 +31,9 @@ spec:
   - name: app
     env:
     - name: DATABASE_PASSWORD
-      value: "SuperSecret123!"  # NEVER DO THIS
+      value: "HARDCODED_DO_NOT_DO_THIS"  # NEVER DO THIS
     - name: API_KEY
-      value: "sk-abc123def456"  # NEVER DO THIS
+      value: "HARDCODED_DO_NOT_DO_THIS"  # NEVER DO THIS
 ```
 
 ### Use External Secrets Operator
@@ -72,7 +72,7 @@ brew install kubeseal
 
 # Create sealed secret
 kubectl create secret generic myapp-secrets \
-  --from-literal=db-password='secret123' \
+  --from-literal=db-password='<your-password>' \
   --dry-run=client -o yaml | \
   kubeseal -o yaml > sealed-secret.yaml
 

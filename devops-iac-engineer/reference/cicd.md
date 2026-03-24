@@ -369,7 +369,7 @@ test:integration:
   variables:
     POSTGRES_DB: testdb
     POSTGRES_USER: testuser
-    POSTGRES_PASSWORD: testpass
+    POSTGRES_PASSWORD: <test-password>
   script:
     - npm run test:integration
 

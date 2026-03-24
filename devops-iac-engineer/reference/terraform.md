@@ -446,7 +446,7 @@ resource "aws_instance" "web" {
 # BAD
 resource "aws_db_instance" "bad" {
   username = "admin"
-  password = "SuperSecret123!"
+  password = "HARDCODED_DO_NOT_DO_THIS"
 }
 
 # GOOD -- use a secret manager
