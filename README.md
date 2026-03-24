@@ -37,7 +37,7 @@ The `name` field in each `SKILL.md` must match the parent directory name (see [A
 ## Repository layout
 
 ```text
-kaynetik-skills/
+kaynetik/skills/
   README.md
   LICENSE
   argocd/
@@ -144,7 +144,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 Others can install with `owner/repo` shorthand:
 
 ```bash
-npx skills add kaynetik/kaynetik-skills --skill <skill-name>
+npx skills add kaynetik/skills --skill <skill-name>
 ```
 
 The [skills.sh](https://skills.sh/) directory ranks skills from anonymous install telemetry from `npx skills add`; there is no separate upload step. Use a **public** repo if you want discovery through installs.

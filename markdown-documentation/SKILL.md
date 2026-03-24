@@ -1,6 +1,6 @@
 ---
 name: markdown-documentation
-description: Master markdown formatting, GitHub Flavored Markdown, README files, and documentation formatting. Use when writing markdown docs, READMEs, or formatting documentation.
+description: Standards and practices for Markdown and GitHub Flavored Markdown (GFM) documentation. Covers heading hierarchy, prose style, GFM alerts, task lists, collapsible sections, Mermaid diagrams, tables, badges, and anti-patterns. Enforces no-AI-slop rules: no Unicode artifacts, no emojis, no filler language, no hard line breaks in prose. Use when writing READMEs, docs pages, changelogs, API docs, contributing guides, or any Markdown file.
 ---
 
 # Markdown Documentation
