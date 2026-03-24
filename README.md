@@ -30,7 +30,7 @@
 | [`tdd-red-green-refactor`](tdd-red-green-refactor/SKILL.md) | `tdd-red-green-refactor` | Red-Green-Refactor TDD: failing test first, minimal pass, refactor; bug fixes, features, regression prevention. |
 | [`tmux-mastery`](tmux-mastery/SKILL.md) | `tmux-mastery` | Comprehensive tmux: process management, session/window orchestration, and visual customization (ricing). |
 | [`ultimate-nixos`](ultimate-nixos/SKILL.md) | `ultimate-nixos` | Nixpkgs maintainer/committer workflow: PRs, OfBorg, `nixpkgs-review`, merge bot, r-ryantm, staging, and backports. |
-| [`zig-programming`](zig-programming/SKILL.md) | `zig-programming` | Zig 0.15.x programming, build system config, and stdlib usage including breaking API changes from prior versions. |
+| [`ziglang`](ziglang/SKILL.md) | `ziglang` | Zig 0.15.x programming, build system config, and stdlib usage including breaking API changes from prior versions. |
 
 The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
 
@@ -92,7 +92,7 @@ kaynetik/skills/
   ultimate-nixos/
     SKILL.md
     reference.md
-  zig-programming/
+  ziglang/
     SKILL.md
     references/
       build-system.md
@@ -132,7 +132,7 @@ npx skills add . --skill <skill-name> -g -a cursor -y
 Install all skills at once:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-nixos zig-programming; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-nixos ziglang; do
   npx skills add . --skill "$skill" -g -a cursor -y
 done
 ```
@@ -156,7 +156,7 @@ For directory hygiene: include a root `LICENSE` if you want clear redistribution
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-nixos zig-programming; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-nixos ziglang; do
   skills-ref validate "./$skill"
 done
 ```

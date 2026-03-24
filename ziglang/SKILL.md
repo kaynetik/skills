@@ -1,5 +1,5 @@
 ---
-name: zig-programming
+name: ziglang
 description: >-
   Guides correct Zig 0.15.x programming, build system configuration, and
   standard library usage. Covers breaking API changes from prior versions
