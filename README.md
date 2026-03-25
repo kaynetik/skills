@@ -25,10 +25,12 @@
 | [`markdown-documentation`](markdown-documentation/SKILL.md) | `markdown-documentation` | Markdown formatting, GitHub Flavored Markdown, README files, and documentation best practices. |
 | [`mermaid-diagrams`](mermaid-diagrams/SKILL.md) | `mermaid-diagrams` | Professional Mermaid diagrams from natural language or technical descriptions, with optional Excalidraw export. |
 | [`meta-cognition-parallel`](meta-cognition-parallel/SKILL.md) | `meta-cognition-parallel` | Three-layer parallel meta-cognition analysis (experimental). |
+| [`podmaster`](podmaster/SKILL.md) | `podmaster` | Container engineering: OCI images and runtimes, Docker and Compose, Podman, Dockerfile/Containerfile optimization, containerd and CRI, debugging and security. |
 | [`practical-haskell`](practical-haskell/SKILL.md) | `practical-haskell` | Efficient Haskell aligned with GHC practice: laziness/strictness, purity, fusion, newtypes, pragmas, Core reading, and space-leak avoidance. |
 | [`solidity-security`](solidity-security/SKILL.md) | `solidity-security` | Solidity smart contract security: vulnerability prevention, secure coding patterns, gas-safe optimizations, and audit preparation. |
 | [`tdd-red-green-refactor`](tdd-red-green-refactor/SKILL.md) | `tdd-red-green-refactor` | Red-Green-Refactor TDD: failing test first, minimal pass, refactor; bug fixes, features, regression prevention. |
 | [`tmux-mastery`](tmux-mastery/SKILL.md) | `tmux-mastery` | Comprehensive tmux: process management, session/window orchestration, and visual customization (ricing). |
+| [`ultimate-db`](ultimate-db/SKILL.md) | `ultimate-db` | Database engineering across PostgreSQL (primary), MySQL, MongoDB, and ClickHouse: schema design, indexing, query optimization, replication, MVCC, partitioning, and operations. |
 | [`ultimate-nixos`](ultimate-nixos/SKILL.md) | `ultimate-nixos` | Nixpkgs maintainer/committer workflow: PRs, OfBorg, `nixpkgs-review`, merge bot, r-ryantm, staging, and backports. |
 | [`ziglang`](ziglang/SKILL.md) | `ziglang` | Zig 0.15.x programming, build system config, and stdlib usage including breaking API changes from prior versions. |
 
@@ -78,6 +80,15 @@ kaynetik/skills/
     reference.md
   meta-cognition-parallel/
     SKILL.md
+  podmaster/
+    SKILL.md
+    reference/
+      containerd.md
+      debugging.md
+      docker.md
+      dockerfile.md
+      podman.md
+      runtimes-and-cri.md
   practical-haskell/
     SKILL.md
     reference.md
@@ -89,6 +100,16 @@ kaynetik/skills/
       examples.md
   tmux-mastery/
     SKILL.md
+  ultimate-db/
+    SKILL.md
+    reference/
+      postgresql.md
+      mysql.md
+      mongodb.md
+      clickhouse.md
+      redis.md
+      sqlite.md
+      duckdb.md
   ultimate-nixos/
     SKILL.md
     reference.md
@@ -132,7 +153,7 @@ npx skills add . --skill <skill-name> -g -a cursor -y
 Install all skills at once:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-nixos ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
   npx skills add . --skill "$skill" -g -a cursor -y
 done
 ```
@@ -156,7 +177,7 @@ For directory hygiene: include a root `LICENSE` if you want clear redistribution
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-nixos ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
   skills-ref validate "./$skill"
 done
 ```
