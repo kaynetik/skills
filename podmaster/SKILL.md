@@ -1,6 +1,6 @@
 ---
 name: podmaster
-description: End-to-end container expertise spanning OCI images, runtimes, and operations: image design, Dockerfile/Containerfile optimization, Docker Engine and Compose, Podman (rootless, pods, Quadlet), containerd and CRI, debugging, security hardening, and CI scanning. Use when building or reviewing container images, choosing Docker vs Podman, troubleshooting containers or pods, optimizing layers and cache, working with nerdctl/ctr, Kubernetes node runtimes, Containerfile, docker-compose, podman-compose, health checks, or when the user mentions containers, OCI, rootless, BuildKit, or image supply chain.
+description: "End-to-end container expertise spanning OCI images, runtimes, and operations: image design, Dockerfile/Containerfile optimization, Docker Engine and Compose, Podman (rootless, pods, Quadlet), containerd and CRI, debugging, security hardening, and CI scanning. Use when building or reviewing container images, choosing Docker vs Podman, troubleshooting containers or pods, optimizing layers and cache, working with nerdctl/ctr, Kubernetes node runtimes, Containerfile, docker-compose, podman-compose, health checks, or when the user mentions containers, OCI, rootless, BuildKit, or image supply chain."
 ---
 
 # Podmaster (container engineering)

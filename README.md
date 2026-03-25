@@ -153,8 +153,8 @@ npx skills add . --skill <skill-name> -g -a cursor -y
 Install all skills at once:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
-  npx skills add . --skill "$skill" -g -a cursor -y
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang podmaster; do
+  npx skills add . --skill "kaynetik/skills/$skill" -g -a cursor -y
 done
 ```
 
@@ -177,7 +177,7 @@ For directory hygiene: include a root `LICENSE` if you want clear redistribution
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
   skills-ref validate "./$skill"
 done
 ```
