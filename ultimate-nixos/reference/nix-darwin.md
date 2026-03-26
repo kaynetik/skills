@@ -274,4 +274,5 @@ Fallback if the above fails: `sudo darwin-uninstaller`.
 - [nix-darwin manual (options)](https://nix-darwin.github.io/nix-darwin/manual/)
 - [Home Manager manual](https://nix-community.github.io/home-manager/)
 - [sops-nix](https://github.com/Mic92/sops-nix)
+- [kaynix](https://github.com/kaynetik/kaynix)
 - Matrix: [#macos:nixos.org](https://matrix.to/#/#macos:nixos.org), [#nix-darwin-dev:nixos.org](https://matrix.to/#/#nix-darwin-dev:nixos.org)
