@@ -1,133 +1,135 @@
 ---
 name: ultimate-nixos
-description: Guides Nixpkgs maintainers and committers on PR workflow, OfBorg, nixpkgs-review, merge bot, r-ryantm autoupdates, CI, staging branches, and how nix-darwin and Home Manager relate to nixpkgs. Use when reviewing or merging nixpkgs PRs, triaging CI, advising on bot commands, mass rebuilds, backports, or consumer Nix config (flakes, overlays) alongside nixpkgs changes.
+description: "Comprehensive Nix ecosystem guidance covering NixOS system configuration, nixpkgs packaging and maintainer workflow, nix-darwin macOS management, Home Manager, flakes, derivations, NixOS module design, security hardening, and community processes. Use when writing Nix expressions, packaging software for nixpkgs, configuring NixOS or nix-darwin systems, designing NixOS modules, reviewing or merging nixpkgs PRs, managing secrets, hardening systems, working with flakes and overlays, or when the user mentions Nix, NixOS, nixpkgs, nix-darwin, Home Manager, flake, derivation, overlay, OfBorg, nixpkgs-review, or darwin-rebuild."
 ---
 
-# Nixpkgs maintainer and committer workflow
+# Nix ecosystem (NixOS, nixpkgs, nix-darwin)
 
-This skill summarizes rules and workflows for people who maintain packages in [Nixpkgs](https://github.com/NixOS/nixpkgs) or hold commit access. It mirrors the structure of community skills like [nixos-best-practices on skills.sh](https://skills.sh/lihaoze123/my-skills/nixos-best-practices): read the references before guessing, then act.
+Think in layers: **Nix language** evaluates expressions into **derivations**, which build into **store paths**. Everything else -- NixOS, nix-darwin, Home Manager, flakes -- is configuration that produces derivations.
 
-## Read before you change things
+## Reference files
 
-When working inside a nixpkgs checkout, prefer authoritative in-tree docs:
+| Topic | File | When to read |
+| :--- | :--- | :--- |
+| nix-darwin (macOS) | [reference/nix-darwin.md](reference/nix-darwin.md) | macOS system config, `darwin-rebuild`, Homebrew casks, launchd, Home Manager on macOS |
+| Nixpkgs maintainers | [reference/maintainers.md](reference/maintainers.md) | PR workflow, OfBorg, merge bot, `nixpkgs-review`, r-ryantm, staging, backports, review norms |
+| Derivations and packaging | [reference/derivations.md](reference/derivations.md) | `stdenv.mkDerivation`, `pkgs/by-name`, fetchers, language builders, `meta`, cross-compilation |
+| Security | [reference/security.md](reference/security.md) | Hardened profile, firewall, AppArmor, systemd sandboxing, secrets (sops-nix, agenix), secure boot |
+| Module system and modularity | [reference/modularity.md](reference/modularity.md) | NixOS/nix-darwin modules, `mkOption`, overlays, `specialArgs`, shared modules, anti-patterns |
+| Flakes | [reference/flakes.md](reference/flakes.md) | Flake anatomy, `follows`, outputs, flake-parts, dev shells, ecosystem tools, Nix vs Lix, release channels |
+| Community and governance | [reference/community.md](reference/community.md) | Communication channels, RFC process, release schedule, documentation hubs, reporting security issues |
 
-| Topic | Location |
-| --- | --- |
-| General contribution flow | [CONTRIBUTING.md](https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md) |
-| Maintainer role, merge bot summary, committer cautions | [maintainers/README.md](https://github.com/NixOS/nixpkgs/blob/master/maintainers/README.md) |
-| Package layout, tests, conventions | [pkgs/README.md](https://github.com/NixOS/nixpkgs/blob/master/pkgs/README.md) |
-| CI layout, merge bot rules, branch classes, `nixpkgs-vet` | [ci/README.md](https://github.com/NixOS/nixpkgs/blob/master/ci/README.md) |
-| PR checklist | [.github/PULL_REQUEST_TEMPLATE.md](https://github.com/NixOS/nixpkgs/blob/master/.github/PULL_REQUEST_TEMPLATE.md) |
-| Critical packages (extra care) | [ci/OWNERS](https://github.com/NixOS/nixpkgs/blob/master/ci/OWNERS) |
+Read the relevant reference before giving version-specific flags, option names, or configuration snippets. Prefer the user's NixOS/nixpkgs version when answers differ across releases.
 
-For extra links (OfBorg, nixpkgs-review, bots, nix-darwin, Home Manager), see [reference.md](reference.md).
+## Mental model
+
+```text
+                    Nix language
+                         |
+                    evaluates to
+                         |
+                    derivations
+                    /    |    \
+               NixOS  nix-darwin  standalone
+                |        |           |
+            nixos-rebuild  darwin-rebuild  nix build / nix develop
+                |        |           |
+            /etc/nixos   flake.nix   flake.nix
+                \        |          /
+                 \       |         /
+                  nixpkgs (package set)
+                         |
+                   Home Manager (user env, any host)
+```
+
+- **Nix** (or **Lix**): the language and package manager. Evaluates `.nix` files into derivations. Lix is a compatible fork; both are supported by nix-darwin and NixOS.
+- **nixpkgs**: the package repository (100k+ packages). Provides `stdenv`, builders, NixOS modules, and library functions.
+- **NixOS**: a Linux distribution configured entirely through Nix modules. Config lives in `/etc/nixos/` or a flake. Applied with `nixos-rebuild switch`.
+- **nix-darwin**: the macOS equivalent of NixOS. Manages system settings, services, Homebrew, and launchd through Nix modules. Applied with `darwin-rebuild switch`.
+- **Home Manager**: user-level environment management. Works standalone or as a module inside NixOS/nix-darwin. Manages dotfiles, shell config, user services.
+- **Flakes**: the input/output schema for reproducible Nix projects. Pins dependencies via `flake.lock`. Still marked experimental in upstream Nix but universally adopted.
 
 ## Red flags (stop and verify)
 
-- Guessing attribute names, option names, or OfBorg behavior instead of checking docs or running a local eval.
-- Pushing untested changes that can break Nixpkgs evaluation (breaks OfBorg for many PRs and Hydra). Prefer waiting for successful OfBorg evaluation and using local review tools.
-- Targeting the wrong branch (mass rebuild on `master`, or backport to a channel branch).
-- Using `@ofborg build` with prose on the same line (parser is line-based; only words after the command on that line are attrs).
-- Assuming Draft PRs skip OfBorg automatic builds (they do not; `WIP:` / `[WIP]` in the PR title does).
+- Guessing attribute names, option names, or builder arguments instead of checking docs or evaluating locally.
+- Pushing untested changes that break nixpkgs evaluation (blocks OfBorg and Hydra for all PRs).
+- Targeting the wrong branch (`staging` vs `master` vs `release-YY.MM`).
+- Using `with pkgs;` at the top of a file (pollutes scope, hides where names come from).
+- Using `rec { }` where `let ... in` would suffice (rec introduces subtle evaluation issues).
+- Using `<nixpkgs>` lookup paths in flake-based setups (breaks reproducibility).
+- Placing overlays inside `home.nix` when Home Manager runs with `useGlobalPkgs = true` (overlays are silently ignored; they belong in the host system config).
+- Baking secrets into the Nix store (store paths are world-readable).
+- Assuming `nix-darwin` modules and NixOS modules are interchangeable (they share patterns but have different option trees).
 
-## Branches (decision summary)
+## Principles
 
-- Default: `master` for most changes.
-- **Mass rebuilds**: if rebuild count is ~500+, consider `staging` instead of `master`; ~1000+ is treated as mass rebuild -> `staging`. Kernel changes and "rebuild all NixOS tests" cases follow special rules (see CONTRIBUTING staging sections).
-- **Backports**: base branch `release-YY.MM`, not `nixos-YY.MM` (channel branch).
-- **Channel branches** (`nixos-*`, `nixpkgs-*`): not for PRs.
+### Reproducibility
 
-Full diagrams and staging/staging-next flow: CONTRIBUTING.md "Staging".
+Pin all inputs. Use flake locks or fixed hashes. Avoid mutable state (`nix-channel`, `<nixpkgs>`, `builtins.fetchTarball` without hash). The same config on the same inputs must produce the same system.
 
-## Commit messages
+### Declarative configuration
 
-- One logical change per commit; squash fixups like whitespace-only follow-ups.
-- No period at end of the subject line.
-- `maintainers: add <handle>` in its own commit before package commits.
-- Area-specific rules: see commit convention sections in `doc/README.md`, `lib/README.md`, `nixos/README.md`, `pkgs/README.md`.
+Describe the desired state, not imperative steps. Prefer NixOS/nix-darwin module options over post-activation scripts. If an option does not exist, write a module rather than a shell script.
 
-**OfBorg automatic builds** key off the commit subject: prefix with the package attribute (e.g. `vim: 1.0.0 -> 2.0.0` triggers `vim`). Multiple packages in one subject can trigger multiple attrs. See [OfBorg README](https://github.com/NixOS/ofborg/blob/master/README.md) for the table of examples.
+### Modularity
 
-## OfBorg (CI builder)
+Split configuration by concern. Each module declares its options and activates conditionally (`lib.mkIf cfg.enable`). Compose modules through imports and `specialArgs`. Share modules across NixOS and nix-darwin where the option trees overlap.
 
-- Lines that trigger the bot **must start with** `@ofborg` (case insensitive). GitHub may not autocomplete it; confirm it links to the ofborg user.
-- `@ofborg build attr1 attr2` -> `nix-build ./default.nix -A ...` for each attr.
-- `@ofborg test test1 test2` -> `nixosTests.test1`, etc.
-- `@ofborg eval` is rarely needed (eval runs on PR open/update).
-- Be careful not to fire mass rebuilds or huge builds (e.g. browsers) without need. Review the PR before asking the bot to build.
+### Security first
 
-## nixpkgs-review
+Use the hardened profile as a baseline. Manage secrets with sops-nix or agenix, never plain text in the store. Sandbox services with systemd options. Pin and audit dependencies. See [reference/security.md](reference/security.md).
 
-Use to build dependents and catch breakage before or alongside OfBorg:
+### Minimal rebuilds
 
-```bash
-nix-shell -p nixpkgs-review --run "nixpkgs-review pr <PR_NUMBER>"
-# or
-nix run nixpkgs#nixpkgs-review -- pr <PR_NUMBER>
-```
-
-Other modes: `nixpkgs-review wip` (uncommitted), `nixpkgs-review rev HEAD` (last commit). Upstream usage: [Mic92/nixpkgs-review](https://github.com/Mic92/nixpkgs-review).
-
-## GitHub Actions and local vet
-
-- "PR / ..." required checks are separate from OfBorg; merge bot text in CONTRIBUTING notes that OfBorg is not always a required check.
-- To approximate CI evaluation locally: `ci/nixpkgs-vet.sh <BASE_BRANCH>` (see ci/README.md).
-
-## nixpkgs-merge-bot
-
-Maintainers can comment:
-
-```text
-@NixOS/nixpkgs-merge-bot merge
-```
-
-**Constraints (summary)** from ci/README.md:
-
-- Target branch must be an allowed development branch.
-- Diff only touches `pkgs/by-name/*` package files.
-- PR author is committer, or backport label path, or [@r-ryantm](https://github.com/r-ryantm), or committer-approved (see full list in ci/README.md).
-- Commenter is in [@NixOS/nixpkgs-maintainers](https://github.com/orgs/NixOS/teams/nixpkgs-maintainers) and is maintainer of **all** touched packages.
-
-The bot waits for OfBorg checks except Darwin. Exact policy can evolve; always read [ci/README.md](https://github.com/NixOS/nixpkgs/blob/master/ci/README.md) when in doubt.
-
-## r-ryantm and nixpkgs-update
-
-- [@r-ryantm](https://github.com/r-ryantm) opens version-bump PRs via [nixpkgs-update](https://nix-community.github.io/nixpkgs-update/) infrastructure.
-- Logs and tooling for maintainers: see [maintainers/README.md "Tools for maintainers"](https://github.com/NixOS/nixpkgs/blob/master/maintainers/README.md) (e.g. log sites, notifiers).
-- Merge bot is often used to merge clean bot PRs for `pkgs/by-name` when maintainers approve.
-
-## Review and merge norms
-
-- Non-blocking feedback is default; **blocking** feedback must use GitHub "Request changes".
-- Give maintainers time: roughly **one week** before merging changes they have not endorsed, except critical/security paths or packages listed in ci/OWNERS (negotiate with maintainer).
-- Prefer conventional comments for optional follow-ups so they are not implicit blockers.
-- Committers may push small fixes to contributor branches when allowed; warn that `gh pr checkout` branches need care with force-push (see CONTRIBUTING).
-
-## NixOS tests
-
-- Declared in `nixos/tests`. Invoked locally per NixOS manual; OfBorg: `@ofborg test driverTestName`.
-- Linux-only for full VM tests.
-
-## nix-darwin and Home Manager (scope boundary)
-
-These are **not** part of the nixpkgs tree; they consume Nixpkgs as an input.
-
-- **nix-darwin**: macOS system configuration (modules, `darwin-rebuild`). Flake-first workflow and `darwinSystem` are documented in the [nix-darwin README](https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#readme). Use `nixpkgs.hostPlatform` `x86_64-darwin` or `aarch64-darwin` as appropriate.
-- **Home Manager**: user environment on NixOS, nix-darwin, or standalone. When `useGlobalPkgs = true`, overlays belong in the **host** system configuration that instantiates Home Manager, not only inside `home.nix` (overlays in `home.nix` are ignored for that mode). Same core idea as the overlay matrix in [nixos-best-practices](https://skills.sh/lihaoze123/my-skills/nixos-best-practices).
-
-When triaging issues: distinguish **packaging bugs** (fix in nixpkgs) from **consumer config** (flake layout, overlay scope, module options in HM/nix-darwin).
+Understand the rebuild cost of changes. Layer cache-friendly operations. Use `nixos-rebuild build` or `darwin-rebuild build` to test before switching. For nixpkgs PRs, check rebuild counts before choosing `master` vs `staging`.
 
 ## Quick task map
 
 | Task | Where to look |
-| --- | --- |
-| Should this target staging? | CONTRIBUTING mass rebuild / rebuild labels |
-| Why did OfBorg not build? | Commit subject format, WIP in PR title |
-| Maintainer merge of by-name PR | Merge bot comment + ci/README constraints |
-| Local CI-ish check | `ci/nixpkgs-vet.sh` |
-| Bot bump PR | r-ryantm; review like any bump; check changelog link |
-| Backport | Label on master PR or manual cherry-pick to `release-YY.MM` |
+| :--- | :--- |
+| Package new software for nixpkgs | [reference/derivations.md](reference/derivations.md) |
+| Configure a NixOS system | [reference/modularity.md](reference/modularity.md), [reference/flakes.md](reference/flakes.md) |
+| Configure macOS with nix-darwin | [reference/nix-darwin.md](reference/nix-darwin.md) |
+| Harden a NixOS system | [reference/security.md](reference/security.md) |
+| Review or merge a nixpkgs PR | [reference/maintainers.md](reference/maintainers.md) |
+| Set up a flake-based project | [reference/flakes.md](reference/flakes.md) |
+| Write a NixOS/nix-darwin module | [reference/modularity.md](reference/modularity.md) |
+| Manage user dotfiles | Home Manager docs + [reference/modularity.md](reference/modularity.md) (overlay scope) |
+| Manage secrets | [reference/security.md](reference/security.md) |
+| Find community help or report issues | [reference/community.md](reference/community.md) |
+| Understand release channels and branches | [reference/flakes.md](reference/flakes.md), [reference/community.md](reference/community.md) |
 
----
+## Workflow: packaging for nixpkgs
 
-If the user is only configuring a personal machine (no nixpkgs PR), still use overlay scope rules above; deep NixOS flake structure is better covered by dedicated consumer skills such as [nixos-best-practices](https://skills.sh/lihaoze123/my-skills/nixos-best-practices).
+1. Determine the build system (autotools, cmake, cargo, go modules, npm, python setuptools/poetry, etc.).
+2. Choose the right builder (`stdenv.mkDerivation`, `buildRustPackage`, `buildGoModule`, `buildNpmPackage`, `buildPythonPackage`).
+3. Place the package in `pkgs/by-name/${shard}/${name}/package.nix` (RFC 140).
+4. Add yourself to `maintainers/maintainer-list.nix` if not already there (separate commit).
+5. Fill in `meta` with `description`, `homepage`, `license`, `maintainers`, `platforms`, and `mainProgram`.
+6. Run `nix-build -A <attr>` locally; run `nixpkgs-review wip` to catch dependent breakage.
+7. Open PR against `master` (or `staging` if rebuild count > 500).
+
+See [reference/derivations.md](reference/derivations.md) and [reference/maintainers.md](reference/maintainers.md).
+
+## Workflow: system configuration (NixOS or nix-darwin)
+
+1. Initialize a flake with `nixosConfigurations` or `darwinConfigurations`.
+2. Structure modules by feature (networking, desktop, services, users).
+3. Use `specialArgs = { inherit inputs; }` to pass flake inputs into modules.
+4. Apply overlays at the system level (`nixpkgs.overlays`), not inside Home Manager when `useGlobalPkgs = true`.
+5. Manage secrets with sops-nix or agenix -- never commit plaintext secrets.
+6. Build first (`nixos-rebuild build` / `darwin-rebuild build`), then switch.
+7. Pin nixpkgs to a release branch (`nixos-25.11`) for stability, or `nixpkgs-unstable` for latest packages.
+
+See [reference/flakes.md](reference/flakes.md), [reference/modularity.md](reference/modularity.md), and [reference/nix-darwin.md](reference/nix-darwin.md).
+
+## Workflow: reviewing a nixpkgs PR
+
+1. Check the target branch (`master`, `staging`, `release-YY.MM`).
+2. Read the diff for correctness, meta completeness, and commit message convention.
+3. Run `nixpkgs-review pr <NUMBER>` to build affected packages locally.
+4. If OfBorg has not built, trigger with `@ofborg build attr1 attr2` (one command per line).
+5. For `pkgs/by-name` changes by a maintainer: consider `@NixOS/nixpkgs-merge-bot merge`.
+6. Give maintainers roughly one week before merging changes they have not endorsed.
+
+See [reference/maintainers.md](reference/maintainers.md).

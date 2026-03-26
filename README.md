@@ -20,6 +20,7 @@
 | [`c-cpp-compilers`](c-cpp-compilers/SKILL.md) | `c-cpp-compilers` | C/C++ compiler toolchain: GCC, Clang/LLVM, build modes, warnings, sanitizers, static analysis, LTO, PGO, C++20/23/26, and debugging. |
 | [`coding-guidelines`](coding-guidelines/SKILL.md) | `coding-guidelines` | Rust code style and best practices: naming, formatting, clippy, rustfmt, lint rules, and code review conventions. |
 | [`devops-iac-engineer`](devops-iac-engineer/SKILL.md) | `devops-iac-engineer` | Infrastructure as code with Terraform, Kubernetes, and cloud platforms. CI/CD pipelines, observability, and security-first DevOps. |
+| [`gh`](gh/SKILL.md) | `gh` | Git hygiene, GitHub CLI (`gh`), and GitHub Actions: workflows, security, performance, and operational commands. |
 | [`helm`](helm/SKILL.md) | `helm` | Helm 3 chart development, scaffolding, templating, debugging, OCI registries, post-renderers, and production operations. |
 | [`lua-projects`](lua-projects/SKILL.md) | `lua-projects` | Idiomatic Lua 5.4 for Neovim plugin/config ecosystems (LazyVim, lazy.nvim) and macOS bar tools (SketchyBar/SbarLua). |
 | [`markdown-documentation`](markdown-documentation/SKILL.md) | `markdown-documentation` | Markdown formatting, GitHub Flavored Markdown, README files, and documentation best practices. |
@@ -31,7 +32,7 @@
 | [`tdd-red-green-refactor`](tdd-red-green-refactor/SKILL.md) | `tdd-red-green-refactor` | Red-Green-Refactor TDD: failing test first, minimal pass, refactor; bug fixes, features, regression prevention. |
 | [`tmux-mastery`](tmux-mastery/SKILL.md) | `tmux-mastery` | Comprehensive tmux: process management, session/window orchestration, and visual customization (ricing). |
 | [`ultimate-db`](ultimate-db/SKILL.md) | `ultimate-db` | Database engineering across PostgreSQL (primary), MySQL, MongoDB, and ClickHouse: schema design, indexing, query optimization, replication, MVCC, partitioning, and operations. |
-| [`ultimate-nixos`](ultimate-nixos/SKILL.md) | `ultimate-nixos` | Nixpkgs maintainer/committer workflow: PRs, OfBorg, `nixpkgs-review`, merge bot, r-ryantm, staging, and backports. |
+| [`ultimate-nixos`](ultimate-nixos/SKILL.md) | `ultimate-nixos` | Nix ecosystem: NixOS system config, nixpkgs packaging and maintainer workflow, nix-darwin, Home Manager, flakes, derivations, modules, security hardening, and community processes. |
 | [`ziglang`](ziglang/SKILL.md) | `ziglang` | Zig 0.15.x programming, build system config, and stdlib usage including breaking API changes from prior versions. |
 
 The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
@@ -67,6 +68,11 @@ kaynetik/skills/
       security.md
       templates.md
       terraform.md
+  gh/
+    SKILL.md
+    reference/
+      gh-cli.md
+      github-actions.md
   helm/
     SKILL.md
   lua-projects/
@@ -112,7 +118,14 @@ kaynetik/skills/
       duckdb.md
   ultimate-nixos/
     SKILL.md
-    reference.md
+    reference/
+      nix-darwin.md
+      maintainers.md
+      derivations.md
+      security.md
+      modularity.md
+      flakes.md
+      community.md
   ziglang/
     SKILL.md
     references/
