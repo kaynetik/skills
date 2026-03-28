@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create GitHub release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          prev=$(git tag --sort=-v:refname | grep -v "^${tag}$" | head -n1 || true)
+          if [[ -z "$prev" ]]; then
+            range="HEAD"
+          else
+            range="${prev}..${tag}"
+          fi
+          {
+            echo "body<<RELEASE_EOF"
+            git log --pretty=format:'- %s (%h)' "$range" --
+            echo ""
+            echo "RELEASE_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
+        with:
+          generate_release_notes: true
+          body: ${{ steps.notes.outputs.body }}
