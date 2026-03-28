@@ -1,3 +1,18 @@
+<h3 align="center">
+ <br/>
+ <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
+  <bold>kaynetik-skills</bold>
+ <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
+</h3>
+
+<p align="center">
+ <a href="https://github.com/kaynetik/skills/releases/latest"><img src="https://img.shields.io/github/v/release/kaynetik/skills?colorA=363a4f&colorB=a6da95&style=for-the-badge&logo=github&logoColor=d8dee9" alt="Latest release"></a>
+ <a href="https://github.com/kaynetik/skills/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/kaynetik/skills/ci.yml?branch=main&colorA=363a4f&style=for-the-badge&logo=github&logoColor=d8dee9&label=CI" alt="CI status"></a>
+ <a href="https://github.com/kaynetik/skills/commits"><img src="https://img.shields.io/github/last-commit/kaynetik/skills?colorA=363a4f&colorB=f5a97f&style=for-the-badge" alt="Last commit"></a>
+ <a href="https://github.com/kaynetik/skills/blob/main/LICENSE"><img src="https://img.shields.io/github/license/kaynetik/skills?colorA=363a4f&colorB=b7bdf7&style=for-the-badge" alt="License"></a>
+</p>
+
+
 # kaynetik-skills
 
 [Agent Skills](https://agentskills.io)-compatible packages for the [`skills` CLI](https://github.com/vercel-labs/skills) and [skills.sh](https://skills.sh/). Each top-level directory here is one installable skill (`SKILL.md` at its root).
@@ -10,6 +25,7 @@
 - [Install](#install)
 - [Publish on GitHub](#publish-on-github)
 - [Validate (optional)](#validate-optional)
+- [Security scanning](#security-scanning)
 - [References](#references)
 
 ## Skills in this repo
@@ -200,3 +216,38 @@ done
 - [skills.sh documentation](https://skills.sh/docs)
 - [vercel-labs/skills (CLI)](https://github.com/vercel-labs/skills)
 - [Agent Skills specification](https://agentskills.io/specification.md)
+
+## Security scanning
+
+All skills in this repo are scanned by [Snyk Agent Scan](https://github.com/snyk/agent-scan) on every push and pull request that touches a `SKILL.md` file. The scan checks for:
+
+- **Prompt injection** (E004) -- hidden or deceptive instructions inside skill content
+- **Malicious code patterns** (E006) -- data exfiltration, backdoors, obfuscation
+- **Hardcoded secrets** (W008) -- API keys or tokens embedded in skill text
+- **Insecure credential handling** (W007) -- secrets passed verbatim through agent context
+- **Untrusted third-party content** (W011) -- skills that expose the agent to arbitrary external input
+- **Unverifiable external dependencies** (W012) -- skills that fetch instructions from remote URLs at runtime
+
+See [docs/issue-codes.md](https://github.com/snyk/agent-scan/blob/main/docs/issue-codes.md) for the full issue reference.
+
+### Run locally
+
+Requires [uv](https://docs.astral.sh/uv/getting-started/installation/) and a valid `SNYK_TOKEN`.
+
+```bash
+# Rich output
+SNYK_TOKEN=<token> ./scripts/agent-scan.sh
+
+# JSON output saved to results.json
+SNYK_TOKEN=<token> ./scripts/agent-scan.sh --out results
+
+# Scan without failing the process on findings
+SNYK_TOKEN=<token> ./scripts/agent-scan.sh --no-fail
+```
+
+Or run directly with `uvx` from the repo root:
+
+```bash
+export SNYK_TOKEN=<token>
+uvx snyk-agent-scan@latest --skills .
+```
