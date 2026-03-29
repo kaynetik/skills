@@ -49,13 +49,13 @@
 <tr>
 <td rowspan="2" align="center"><b>4</b></td>
 <td><a href="devops-iac-engineer/SKILL.md"><code>devops-iac-engineer</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
+<td align="right"><img src="https://img.shields.io/badge/W012-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W012 warning"></td>
 </tr>
 <tr><td colspan="2">Infrastructure as code with Terraform, Kubernetes, and cloud platforms. CI/CD pipelines, observability, and security-first DevOps.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>5</b></td>
 <td><a href="gh/SKILL.md"><code>gh</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W011-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W011 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Git hygiene, GitHub CLI (<code>gh</code>), and GitHub Actions: workflows, security, performance, and operational commands.</td></tr>
 <tr>
