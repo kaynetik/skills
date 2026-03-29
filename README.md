@@ -66,72 +66,78 @@
 <tr><td colspan="2">Helm 3 chart development, scaffolding, templating, debugging, OCI registries, post-renderers, and production operations.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>7</b></td>
+<td><a href="kustomize/SKILL.md"><code>kustomize</code></a></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
+</tr>
+<tr><td colspan="2">Kubernetes manifest customization with Kustomize: bases and overlays, patches, generators, images, components, replacements, and GitOps-friendly validation.</td></tr>
+<tr>
+<td rowspan="2" align="center"><b>8</b></td>
 <td><a href="lua-projects/SKILL.md"><code>lua-projects</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Idiomatic Lua 5.4 for Neovim plugin/config ecosystems (LazyVim, lazy.nvim) and macOS bar tools (SketchyBar/SbarLua).</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>8</b></td>
+<td rowspan="2" align="center"><b>9</b></td>
 <td><a href="markdown-documentation/SKILL.md"><code>markdown-documentation</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Markdown formatting, GitHub Flavored Markdown, README files, and documentation best practices.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>9</b></td>
+<td rowspan="2" align="center"><b>10</b></td>
 <td><a href="mermaid-diagrams/SKILL.md"><code>mermaid-diagrams</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Professional Mermaid diagrams from natural language or technical descriptions, with optional Excalidraw export.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>10</b></td>
+<td rowspan="2" align="center"><b>11</b></td>
 <td><a href="meta-cognition-parallel/SKILL.md"><code>meta-cognition-parallel</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Three-layer parallel meta-cognition analysis (experimental).</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>11</b></td>
+<td rowspan="2" align="center"><b>12</b></td>
 <td><a href="podmaster/SKILL.md"><code>podmaster</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Container engineering: OCI images and runtimes, Docker and Compose, Podman, Dockerfile/Containerfile optimization, containerd and CRI, debugging and security.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>12</b></td>
+<td rowspan="2" align="center"><b>13</b></td>
 <td><a href="practical-haskell/SKILL.md"><code>practical-haskell</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Efficient Haskell aligned with GHC practice: laziness/strictness, purity, fusion, newtypes, pragmas, Core reading, and space-leak avoidance.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>13</b></td>
+<td rowspan="2" align="center"><b>14</b></td>
 <td><a href="solidity-security/SKILL.md"><code>solidity-security</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/W009-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W009 warning"></td>
 </tr>
 <tr><td colspan="2">Solidity smart contract security: vulnerability prevention, secure coding patterns, gas-safe optimizations, and audit preparation.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>14</b></td>
+<td rowspan="2" align="center"><b>15</b></td>
 <td><a href="tdd-red-green-refactor/SKILL.md"><code>tdd-red-green-refactor</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Red-Green-Refactor TDD: failing test first, minimal pass, refactor; bug fixes, features, regression prevention.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>15</b></td>
+<td rowspan="2" align="center"><b>16</b></td>
 <td><a href="tmux-mastery/SKILL.md"><code>tmux-mastery</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Comprehensive tmux: process management, session/window orchestration, and visual customization (ricing).</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>16</b></td>
+<td rowspan="2" align="center"><b>17</b></td>
 <td><a href="ultimate-db/SKILL.md"><code>ultimate-db</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Database engineering across PostgreSQL (primary), MySQL, MongoDB, and ClickHouse: schema design, indexing, query optimization, replication, MVCC, partitioning, and operations.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>17</b></td>
+<td rowspan="2" align="center"><b>18</b></td>
 <td><a href="ultimate-nixos/SKILL.md"><code>ultimate-nixos</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/W013-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W013 warning"></td>
 </tr>
 <tr><td colspan="2">Nix ecosystem: NixOS system config, nixpkgs packaging and maintainer workflow, nix-darwin, Home Manager, flakes, derivations, modules, security hardening, and community processes.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>18</b></td>
+<td rowspan="2" align="center"><b>19</b></td>
 <td><a href="ziglang/SKILL.md"><code>ziglang</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
@@ -170,7 +176,7 @@ npx skills add . --skill <skill-name> -g -a cursor -y
 Install all skills at once:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer gh helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer gh helm kustomize lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
   npx skills add . --skill "kaynetik/skills/$skill" -g -a cursor -y
 done
 ```
@@ -182,7 +188,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer gh helm lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer gh helm kustomize lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
   skills-ref validate "./$skill"
 done
 ```
