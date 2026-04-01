@@ -142,6 +142,12 @@
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Zig 0.15.x programming, build system config, and stdlib usage including breaking API changes from prior versions.</td></tr>
+<tr>
+<td rowspan="2" align="center"><b>20</b></td>
+<td><a href="frontend-design/SKILL.md"><code>frontend-design</code></a></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
+</tr>
+<tr><td colspan="2">Production-grade frontend design: design tokens, typography, color, components, motion, accessibility, and design system architecture; Next.js v16 App Router examples in companion files.</td></tr>
 </table>
 
 The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
@@ -176,7 +182,7 @@ npx skills add . --skill <skill-name> -g -a cursor -y
 Install all skills at once:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer gh helm kustomize lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer frontend-design gh helm kustomize lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
   npx skills add . --skill "kaynetik/skills/$skill" -g -a cursor -y
 done
 ```
@@ -188,7 +194,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer gh helm kustomize lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer frontend-design gh helm kustomize lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ziglang; do
   skills-ref validate "./$skill"
 done
 ```
