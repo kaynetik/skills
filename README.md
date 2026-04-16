@@ -49,7 +49,7 @@
 <tr>
 <td rowspan="2" align="center"><b>4</b></td>
 <td><a href="devops-iac-engineer/SKILL.md"><code>devops-iac-engineer</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W012-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W012 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Infrastructure as code with Terraform, Kubernetes, and cloud platforms. CI/CD pipelines, observability, and security-first DevOps.</td></tr>
 <tr>
@@ -97,7 +97,7 @@
 <tr>
 <td rowspan="2" align="center"><b>12</b></td>
 <td><a href="podmaster/SKILL.md"><code>podmaster</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
+<td align="right"><img src="https://img.shields.io/badge/W011-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W011 warning"></td>
 </tr>
 <tr><td colspan="2">Container engineering: OCI images and runtimes, Docker and Compose, Podman, Dockerfile/Containerfile optimization, containerd and CRI, debugging and security.</td></tr>
 <tr>
