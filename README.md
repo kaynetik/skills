@@ -151,43 +151,43 @@
 <tr>
 <td rowspan="2" align="center"><b>21</b></td>
 <td><a href="legalizer/SKILL.md"><code>legalizer</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-lightgrey?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Public-facing copy review for Web3/crypto projects: securities-risk language removal, Howey-test analysis, FinCEN non-custodial guidance, and utility-token framing for docs, announcements, and whitepapers.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>22</b></td>
 <td><a href="svg-gen/SKILL.md"><code>svg-gen</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-lightgrey?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Clean, accessible SVG assets: UI icons, vector logos, wordmarks, and simple illustrations with viewBox-first layout, palette classes or <code>currentColor</code>, and optimization for handoff.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>23</b></td>
 <td><a href="ultimate-rust/SKILL.md"><code>ultimate-rust</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-lightgrey?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Comprehensive Rust: ownership, lifetimes, smart pointers, generics, traits, type-driven design, error handling, concurrency, async, performance, ecosystem integration, unsafe code, and code review.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>24</b></td>
 <td><a href="ultimate-web3/SKILL.md"><code>ultimate-web3</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-lightgrey?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/W011-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W011 warning"></td>
 </tr>
 <tr><td colspan="2">Web3 architecture and protocol design: chain selection, Solidity architecture (proxies, diamonds, factories), L2/rollup stacks, account abstraction, bridges, oracles, MEV, custody, privacy L1, governance, and deployment ops.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>25</b></td>
 <td><a href="web3-frontend/SKILL.md"><code>web3-frontend</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-lightgrey?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/W009-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W009 warning"></td>
 </tr>
 <tr><td colspan="2">Production dApp frontend in Next.js 16 (App Router) with wagmi v2, viem, and RainbowKit: SSR-safe config with cookie hydration, on-chain reads, transaction lifecycle UX, SIWE auth, ABI codegen, and Next.js 16 cache directives.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>26</b></td>
 <td><a href="web3-testing/SKILL.md"><code>web3-testing</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-lightgrey?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/W012-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W012 warning"></td>
 </tr>
 <tr><td colspan="2">Smart contract testing with Foundry (primary) and Hardhat 3: unit tests, parameterized fuzzing, stateful invariants, fork testing, static analysis (Slither, Aderyn), symbolic execution (Halmos), gas snapshots, coverage, and CI integration.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>27</b></td>
 <td><a href="whitepapers/SKILL.md"><code>whitepapers</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-lightgrey?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Technical whitepapers and litepapers for Web3/crypto protocols: architecture, threat model, token mechanism, governance, citations, and audit-ready claims; cross-references the <code>legalizer</code> skill for token language.</td></tr>
 </table>
