@@ -1,0 +1,206 @@
+# Setup: install, providers, wagmi config
+
+Read when: bootstrapping a new dApp, fixing hydration mismatches, or configuring multi-chain RPCs.
+
+## Install
+
+```bash
+npm i wagmi viem @tanstack/react-query
+npm i @rainbow-me/rainbowkit
+```
+
+For ABI codegen (recommended; see `abi.md`):
+
+```bash
+npm i -D @wagmi/cli
+```
+
+## Wagmi config (SSR-safe)
+
+`localStorage` is the wagmi default and breaks SSR hydration in Next.js because the server cannot read it. Use `cookieStorage` and pass cookies through the App Router.
+
+```ts
+// lib/wagmi.ts
+import { cookieStorage, createConfig, createStorage, http } from 'wagmi'
+import { mainnet, base, arbitrum, optimism, sepolia } from 'wagmi/chains'
+import { injected, walletConnect, coinbaseWallet } from 'wagmi/connectors'
+
+export function getWagmiConfig() {
+  return createConfig({
+    chains: [mainnet, base, arbitrum, optimism, sepolia],
+    connectors: [
+      injected(),
+      walletConnect({ projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID! }),
+      coinbaseWallet({ appName: 'My App' }),
+    ],
+    transports: {
+      [mainnet.id]: http(process.env.NEXT_PUBLIC_RPC_MAINNET),
+      [base.id]: http(process.env.NEXT_PUBLIC_RPC_BASE),
+      [arbitrum.id]: http(process.env.NEXT_PUBLIC_RPC_ARBITRUM),
+      [optimism.id]: http(process.env.NEXT_PUBLIC_RPC_OPTIMISM),
+      [sepolia.id]: http(),
+    },
+    ssr: true,
+    storage: createStorage({ storage: cookieStorage }),
+  })
+}
+```
+
+Export a function (not a singleton) so each request gets a fresh config; this avoids cross-request state bleed when running on serverless/edge.
+
+## Providers tree
+
+```tsx
+// app/providers.tsx
+'use client'
+
+import { useState, type ReactNode } from 'react'
+import { WagmiProvider, type State } from 'wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { getWagmiConfig } from '@/lib/wagmi'
+import '@rainbow-me/rainbowkit/styles.css'
+
+export function Providers({
+  children,
+  initialState,
+}: {
+  children: ReactNode
+  initialState?: State
+}) {
+  const [config] = useState(() => getWagmiConfig())
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 30_000,
+        gcTime: 5 * 60_000,
+        refetchOnWindowFocus: false,
+      },
+    },
+  }))
+
+  return (
+    <WagmiProvider config={config} initialState={initialState}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>{children}</RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
+}
+```
+
+## Root layout (server component)
+
+```tsx
+// app/layout.tsx
+import { headers } from 'next/headers'
+import { cookieToInitialState } from 'wagmi'
+import { getWagmiConfig } from '@/lib/wagmi'
+import { Providers } from './providers'
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookie = (await headers()).get('cookie')
+  const initialState = cookieToInitialState(getWagmiConfig(), cookie)
+
+  return (
+    <html lang="en">
+      <body>
+        <Providers initialState={initialState}>{children}</Providers>
+      </body>
+    </html>
+  )
+}
+```
+
+The `initialState` round-trip is what eliminates the "wallet connected on client, disconnected on server" hydration flicker.
+
+## Environment variables
+
+```bash
+# .env.local
+NEXT_PUBLIC_WC_PROJECT_ID=
+NEXT_PUBLIC_RPC_MAINNET=        # safe to ship to the browser
+NEXT_PUBLIC_RPC_BASE=
+NEXT_PUBLIC_RPC_ARBITRUM=
+NEXT_PUBLIC_RPC_OPTIMISM=
+
+RPC_MAINNET=                    # server-only (no NEXT_PUBLIC_)
+RPC_BASE=
+ALCHEMY_API_KEY=
+```
+
+| Rule | Reason |
+| :--- | :--- |
+| Public RPCs (free tier or already-rate-limited) -> `NEXT_PUBLIC_*` | They will be exposed in the JS bundle |
+| Private keyed RPCs (Alchemy/Infura paid plans) -> server-only env | Never expose API keys in client bundles |
+| Use server-only RPCs in Server Components, route handlers, Server Actions | They run only in Node/edge, not the browser |
+
+## Multi-chain RPC selection
+
+If you have both public and private RPCs for the same chain:
+
+```ts
+const mainnetTransport = http(
+  process.env.NEXT_PUBLIC_RPC_MAINNET ?? 'https://eth.llamarpc.com',
+  { batch: true, retryCount: 3 }
+)
+```
+
+Enable `batch: true` to coalesce multiple eth_call requests into single JSON-RPC payloads. This alone often cuts request volume by 5x.
+
+## Project layout
+
+```
+app/
+  layout.tsx              # RSC; sets up cookieToInitialState
+  providers.tsx           # 'use client' boundary
+  page.tsx                # RSC entry; wallet UI delegated to client children
+  api/...                 # route handlers (server-side viem ok here)
+components/
+  wallet/                 # all 'use client'
+  contracts/              # all 'use client'
+  ui/                     # RSC by default (pure presentational)
+lib/
+  wagmi.ts                # config factory
+  viem.ts                 # public client for server-side reads
+  contracts/
+    abis.ts               # generated by wagmi cli
+    addresses.ts          # chainId -> address tables
+```
+
+## Public viem client (server reads)
+
+```ts
+// lib/viem.ts
+import { createPublicClient, fallback, http } from 'viem'
+import { mainnet, base } from 'viem/chains'
+
+export const publicClients = {
+  [mainnet.id]: createPublicClient({
+    chain: mainnet,
+    transport: fallback([
+      http(process.env.RPC_MAINNET),
+      http(process.env.NEXT_PUBLIC_RPC_MAINNET),
+    ]),
+  }),
+  [base.id]: createPublicClient({
+    chain: base,
+    transport: http(process.env.RPC_BASE),
+  }),
+} as const
+```
+
+`fallback([...])` gives you free degradation: private RPC primary, public RPC backup.
+
+## Bundle size note
+
+RainbowKit ships a sizable connector list. Tree-shake by importing connectors explicitly from `wagmi/connectors`, not from a meta-package. RainbowKit's wallet list is configured via `getDefaultConfig` if you go that route -- pick only the wallets your audience uses.
+
+## Verification checklist
+
+- [ ] `ssr: true` in wagmi config
+- [ ] `storage: createStorage({ storage: cookieStorage })`
+- [ ] `cookieToInitialState` called in root `layout.tsx`
+- [ ] Server-only RPC envs are NOT prefixed with `NEXT_PUBLIC_`
+- [ ] `batch: true` on the `http` transport for any high-traffic chain
+- [ ] No wagmi/viem imports in any file without `'use client'` (excluding viem `createPublicClient` usage in server-only files)
