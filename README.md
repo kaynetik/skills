@@ -190,6 +190,12 @@
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Technical whitepapers and litepapers for Web3/crypto protocols: architecture, threat model, token mechanism, governance, citations, and audit-ready claims; cross-references the <code>legalizer</code> skill for token language.</td></tr>
+<tr>
+<td rowspan="2" align="center"><b>28</b></td>
+<td><a href="dag-flowd/SKILL.md"><code>dag-flowd</code></a></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
+</tr>
+<tr><td colspan="2">Flowd local-first MCP server (12 tools) for cross-session memory, prose-first DAG planning with a clarification loop, and rules-based action gating; covers <code>memory_*</code>, <code>plan_*</code>, and <code>rules_*</code> tool composition.</td></tr>
 </table>
 
 The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
@@ -224,7 +230,7 @@ npx skills add . --skill <skill-name> -g -a cursor -y
 Install all skills at once:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines dag-flowd devops-iac-engineer frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
   npx skills add . --skill "kaynetik/skills/$skill" -g -a cursor -y
 done
 ```
@@ -236,7 +242,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines dag-flowd devops-iac-engineer frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
   skills-ref validate "./$skill"
 done
 ```
