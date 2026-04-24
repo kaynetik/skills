@@ -195,12 +195,13 @@
 <td><a href="flowd-dag/SKILL.md"><code>flowd-dag</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
+<tr><td colspan="2">Flowd local-first MCP server (12 tools) for cross-session memory and prose-first DAG planning with a clarification loop; covers <code>memory_*</code> and <code>plan_*</code> tool composition, schema discipline, and the Draft -> Confirmed -> Running lifecycle.</td></tr>
 <tr>
-<td rowspan="2" align="center"><b>28</b></td>
-<td><a href="flowd-rule/SKILL.md"><code>flowd-rule</code></a></td>
+<td rowspan="2" align="center"><b>29</b></td>
+<td><a href="flowd-rules/SKILL.md"><code>flowd-rules</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
-<tr><td colspan="2">Flowd local-first MCP server (12 tools) for cross-session memory, prose-first DAG planning with a clarification loop, and rules-based action gating; covers <code>memory_*</code>, <code>plan_*</code>, and <code>rules_*</code> tool composition.</td></tr>
+<tr><td colspan="2">Authors flowd rule YAML files for <code>.flowd/rules/</code> (project) or <code>~/.flowd/rules/</code> (global); encodes the engine's <code>ProposedAction</code> blind spots, <code>deny</code> vs <code>warn</code> selection, glob <code>scope</code> vs regex <code>match</code>, and the four-part description template.</td></tr>
 </table>
 
 The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
@@ -232,12 +233,16 @@ Install one skill into Cursor globally:
 npx skills add . --skill <skill-name> -g -a cursor -y
 ```
 
-Install all skills at once:
+Install all skills into Cursor globally with the `'*'` wildcard:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines flowd-dag flowd-rule devops-iac-engineer frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
-  npx skills add . --skill "kaynetik/skills/$skill" -g -a cursor -y
-done
+npx skills add . --skill '*' -g -a cursor -y
+```
+
+Or fan out to every coding agent the CLI detects on the system (no agent flag needed):
+
+```bash
+npx skills add . --all
 ```
 
 Use the path to your clone instead of `.` if you are not in the repo root.
@@ -247,7 +252,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd c-cpp-compilers coding-guidelines flowd-dag flowd-rule devops-iac-engineer frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
+for skill in argocd c-cpp-compilers coding-guidelines devops-iac-engineer flowd-dag flowd-rules frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
   skills-ref validate "./$skill"
 done
 ```
