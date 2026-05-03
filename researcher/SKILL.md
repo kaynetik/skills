@@ -1,9 +1,9 @@
 ---
-name: researchers
+name: researcher
 description: Research and brainstorming mode for refining goals, exploring options, and planning before implementation. Use when the user asks to brainstorm, research, explore ideas, define scope, compare approaches, or clarify an ambiguous task.
 ---
 
-# researchers
+# researcher
 
 ## Goal
 

@@ -210,7 +210,7 @@
 <tr><td colspan="2">Root cause analysis for bugs, incidents, failed tests, build errors, outages, and unexpected behavior using evidence-first diagnosis.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>31</b></td>
-<td><a href="researchers/SKILL.md"><code>researchers</code></a></td>
+<td><a href="researcher/SKILL.md"><code>researcher</code></a></td>
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Research and brainstorming mode for refining goals, exploring options, clarifying unknowns, and planning before implementation.</td></tr>
@@ -264,7 +264,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd researchers c-cpp-compilers coding-guidelines devops-iac-engineer flowd-dag flowd-rules frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell rca solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
+for skill in argocd researcher c-cpp-compilers coding-guidelines devops-iac-engineer flowd-dag flowd-rules frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell rca solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
   skills-ref validate "./$skill"
 done
 ```
