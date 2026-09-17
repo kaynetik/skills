@@ -1,7 +1,7 @@
 ---
 name: ziglang
 description: >-
-  Guides correct Zig 0.15.x programming, build system configuration, and
+  Guides correct Zig 0.16.x programming, build system configuration, and
   standard library usage. Covers breaking API changes from prior versions
   (ArrayList, I/O rewrite, build.zig, Ed25519, JSON, HTTP client,
   @typeInfo enum casing, usingnamespace removal). Use when writing Zig code,
@@ -9,21 +9,21 @@ description: >-
   mentions Zig, zig build, zig test, or Zig standard library.
 ---
 
-# Zig 0.15.x Programming
+# Zig 0.16.x Programming
 
-> **Version scope**: Pinned to Zig 0.15.x (specifically 0.15.2). For master/nightly, APIs may differ. Always check official docs for the target version.
+> **Version scope**: Pinned to Zig 0.16.x (specifically 0.16.0). For master/nightly, APIs may differ. Always check official docs for the target version.
 
-Many LLMs have outdated Zig knowledge (0.11-0.14) that causes compilation errors. This skill ensures correct 0.15.x API usage.
+Many LLMs have outdated Zig knowledge (0.11-0.14) that causes compilation errors. This skill ensures correct 0.16.x API usage.
 
 ## Official Documentation
 
-- Language Reference: <https://ziglang.org/documentation/0.15.2/>
-- Standard Library: <https://ziglang.org/documentation/0.15.2/std/>
-- Release Notes: <https://ziglang.org/download/0.15.1/release-notes.html>
+- Language Reference: <https://ziglang.org/documentation/0.16.2/>
+- Standard Library: <https://ziglang.org/documentation/0.16.2/std/>
+- Release Notes: <https://ziglang.org/download/0.16.1/release-notes.html>
 - Build System: <https://ziglang.org/learn/build-system/>
 - Source: <https://codeberg.org/ziglang/zig>
 
-## Critical API Changes in 0.15
+## Critical API Changes in 0.16
 
 ### ArrayList -- Allocator Now Required
 
@@ -45,7 +45,7 @@ list.appendAssumeCapacity(item); // no allocator needed
 New `std.Io.Writer` and `std.Io.Reader` are non-generic, buffer-in-interface, ring-buffer-based types.
 
 ```zig
-// stdout (0.15+)
+// stdout (0.16+)
 var stdout_buffer: [1024]u8 = undefined;
 var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
 const stdout: *std.Io.Writer = &stdout_writer.interface;
@@ -63,7 +63,7 @@ fn useOldWriter(old_writer: anytype) !void {
 ### @typeInfo Enum Cases -- Lowercase
 
 ```zig
-// 0.15+ uses lowercase / @"" escaped names
+// 0.16+ uses lowercase / @"" escaped names
 if (@typeInfo(T) == .slice) { ... }
 if (@typeInfo(T) == .pointer) { ... }
 if (@typeInfo(T) == .@"struct") { ... }
@@ -74,7 +74,7 @@ if (@typeInfo(T) == .@"union") { ... }
 ### Custom Format Functions -- {f} Specifier
 
 ```zig
-// 0.15+: use {f}, simplified signature
+// 0.16+: use {f}, simplified signature
 pub fn format(self: Self, writer: anytype) !void {
     try writer.writeAll("...");
 }
@@ -161,7 +161,7 @@ const parsed = try std.json.parseFromSlice(MyStruct, allocator, json_str, .{});
 defer parsed.deinit();
 const data = parsed.value;
 
-// Serialize (no stringifyAlloc in 0.15.2)
+// Serialize (no stringifyAlloc in 0.16.2)
 const formatted = try std.fmt.allocPrint(allocator, "{f}", .{std.json.fmt(data, .{})});
 defer allocator.free(formatted);
 ```

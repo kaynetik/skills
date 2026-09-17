@@ -1,6 +1,6 @@
-# Migration Patterns: 0.13/0.14 to 0.15.x
+# Migration Patterns: 0.13/0.14 to 0.16.x
 
-Common code patterns that need updating when moving to Zig 0.15.x.
+Common code patterns that need updating when moving to Zig 0.16.x.
 
 ## ArrayList
 
@@ -14,7 +14,7 @@ try list.appendSlice(&[_]u8{ 1, 2, 3 });
 const slice = try list.toOwnedSlice();
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 var list = std.ArrayList(u8).init(allocator);
@@ -35,7 +35,7 @@ const stdout = std.io.getStdOut().writer();
 try stdout.print("Hello {s}\n", .{"world"});
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 var buf: [4096]u8 = undefined;
@@ -66,7 +66,7 @@ const exe = b.addExecutable(.{
 exe.addModule("mymod", my_module);
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 const exe = b.addExecutable(.{
@@ -103,7 +103,7 @@ if (@typeInfo(T) == .Enum) { ... }
 if (@typeInfo(T) == .Slice) { ... }
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 if (@typeInfo(T) == .@"struct") { ... }
@@ -131,7 +131,7 @@ pub fn format(
 }
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 pub fn format(self: Self, writer: anytype) !void {
@@ -148,7 +148,7 @@ pub fn format(self: Self, writer: anytype) !void {
 pub usingnamespace @import("other.zig");
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 // Option 1: explicit re-exports
@@ -168,7 +168,7 @@ pub const other = @import("other.zig");
 const sig = try Ed25519.Signature.fromBytes(bytes);
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 const sig = Ed25519.Signature.fromBytes(bytes); // not an error union
@@ -188,7 +188,7 @@ try req.wait();
 const body = try req.reader().readAllAlloc(allocator, max);
 ```
 
-### After (0.15)
+### After (0.16)
 
 ```zig
 var client: std.http.Client = .{ .allocator = allocator };
@@ -204,10 +204,10 @@ const body = try req.reader().readAllAlloc(allocator, max);
 
 ## Arithmetic on undefined
 
-Compile error in 0.15 for arithmetic on `undefined` values. Initialize variables explicitly:
+Compile error in 0.16 for arithmetic on `undefined` values. Initialize variables explicitly:
 
 ```zig
-// Before: var x: u32 = undefined; x += 1; -- compile error in 0.15
+// Before: var x: u32 = undefined; x += 1; -- compile error in 0.16
 // After:
 var x: u32 = 0;
 x += 1;
@@ -219,7 +219,7 @@ Implicit coercion from integers wider than the float's mantissa is now a compile
 
 ```zig
 // Before: implicitly allowed
-const f: f32 = some_u64; // compile error in 0.15
+const f: f32 = some_u64; // compile error in 0.16
 
 // After: explicit cast required
 const f: f32 = @floatFromInt(some_u64);

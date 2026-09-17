@@ -1,6 +1,6 @@
-# Zig 0.15.x Build System Reference
+# Zig 0.16.x Build System Reference
 
-Detailed patterns for `build.zig` configuration in 0.15.x.
+Detailed patterns for `build.zig` configuration in 0.16.x.
 
 ## Executable
 

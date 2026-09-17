@@ -1,6 +1,6 @@
-# Zig 0.15.x Standard Library API Reference
+# Zig 0.16.x Standard Library API Reference
 
-Detailed API patterns for commonly used std modules that changed in 0.15.x.
+Detailed API patterns for commonly used std modules that changed in 0.16.x.
 
 ## std.http.Client
 
@@ -107,7 +107,7 @@ const r = fbs.reader();
 
 ## std.fmt
 
-### Format Specifiers (0.15)
+### Format Specifiers (0.16)
 
 | Specifier | Purpose |
 |-----------|---------|
@@ -182,7 +182,7 @@ while (try iter.next()) |entry| {
 | `std.heap.c_allocator` | C interop (requires libc) |
 | `std.heap.ArenaAllocator` | Batch allocation, single free |
 | `std.heap.FixedBufferAllocator` | No-heap, stack-backed |
-| `std.heap.smp_allocator` | Thread-safe general purpose (new in 0.15) |
+| `std.heap.smp_allocator` | Thread-safe general purpose (new in 0.16) |
 | `std.testing.allocator` | Tests; detects leaks |
 | `std.testing.FailingAllocator` | Tests; simulates OOM |
 | `std.heap.DebugAllocator` | Debug; detects use-after-free |
