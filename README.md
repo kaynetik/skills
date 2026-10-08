@@ -214,6 +214,12 @@
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Research and brainstorming mode for refining goals, exploring options, clarifying unknowns, and planning before implementation.</td></tr>
+<tr>
+<td rowspan="2" align="center"><b>32</b></td>
+<td><a href="grafana-dashboards/SKILL.md"><code>grafana-dashboards</code></a></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
+</tr>
+<tr><td colspan="2">Production Grafana dashboards: information hierarchy, RED/USE/SLO methods, modern panel JSON, template variables, unified alerting boundaries, and dashboards-as-code (file provisioning, Kubernetes sidecar, Terraform, Foundation SDK/Jsonnet).</td></tr>
 </table>
 
 The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
@@ -264,7 +270,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd researcher c-cpp-compilers coding-guidelines devops-iac-engineer flowd-dag flowd-rules frontend-design gh helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell rca solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
+for skill in argocd researcher c-cpp-compilers coding-guidelines devops-iac-engineer flowd-dag flowd-rules frontend-design gh grafana-dashboards helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell rca solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
   skills-ref validate "./$skill"
 done
 ```
