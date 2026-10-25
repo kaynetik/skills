@@ -44,3 +44,4 @@ Structured checklist, official documentation links, and patterns for clean workf
 
 - **Enterprise or org policy:** Follow internal security and compliance rules over generic advice here.
 - **Deep Git internals:** Use project docs or a dedicated Git reference for advanced history surgery.
+- **Auditing a repository for vulnerabilities:** Use `security-audit`. This skill covers Git and Actions authoring.

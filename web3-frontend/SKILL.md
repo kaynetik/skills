@@ -69,7 +69,9 @@ If the user explicitly chose another stack, do not argue; help them with what th
 
 ## When NOT to apply this skill
 
-- Smart contract authoring, security review, or audits -> use `solidity-security` or `ultimate-web3-engineer`.
+- Smart contract authoring -> use `ultimate-web3`.
+- Solidity patterns and secure fixes -> use `solidity-security`.
+- A codebase audit, pen test, or findings report -> use `security-audit`.
 - Smart contract testing (Hardhat/Foundry) -> use `web3-testing`.
 - Pure design tokens, typography, color systems -> use `frontend-design`.
 - Generic Next.js questions with no wallet/chain involvement -> use base Next.js knowledge; do not load this skill's reference files.
@@ -77,6 +79,7 @@ If the user explicitly chose another stack, do not argue; help them with what th
 ## Companion skills
 
 - `frontend-design` -- visual design tokens, motion, typography
-- `ultimate-web3-engineer` -- contract architecture and audits
+- `ultimate-web3` -- protocol architecture
 - `web3-testing` -- contract test suites
 - `solidity-security` -- contract-side hardening
+- `security-audit` -- coverage-led codebase audit and findings report

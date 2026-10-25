@@ -56,3 +56,7 @@ Guidance for designing, implementing, and maintaining cloud infrastructure using
 **Cost overruns** -- tagging strategy, cost allocation tags, budget alerts, right-sizing, spot instances, auto-scaling
 
 **Complex K8s configs** -- Helm for templating, Kustomize for environment overlays, GitOps for declarative state, operators for stateful workloads
+
+## When this skill is not enough
+
+- **Auditing a repository for vulnerabilities, or writing a findings report:** use `security-audit`. This skill designs and hardens infrastructure.

@@ -79,13 +79,15 @@ If the user explicitly chose another stack, do not argue; help them with what th
 
 ## When NOT to apply this skill
 
-- Writing the contracts themselves or architecting new protocols -> use `ultimate-web3-engineer`.
-- Contract security review / audit prep beyond tests -> use `solidity-security`.
+- Writing the contracts themselves or architecting new protocols -> use `ultimate-web3`.
+- Solidity patterns, secure fixes, and audit preparation -> use `solidity-security`.
+- A codebase audit, pen test, or findings report -> use `security-audit`.
 - dApp frontend testing (component, E2E) -> that is frontend testing, not contract testing.
 
 ## Companion skills
 
 - `solidity-security` -- vulnerability patterns and secure coding
-- `ultimate-web3-engineer` -- contract architecture and audits
+- `ultimate-web3` -- protocol architecture
+- `security-audit` -- coverage-led codebase audit and findings report
 - `web3-frontend` -- dApp frontend patterns (wagmi, viem, Next.js)
 - `gh` -- CI authoring, GitHub Actions hygiene

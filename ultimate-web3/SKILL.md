@@ -16,6 +16,7 @@ This skill is the **architecture layer**. Defer to companion skills for their do
 | dApp frontend (wagmi, viem, RainbowKit, SIWE, Next.js dApps) | `web3-frontend` |
 | Smart contract testing (Foundry, Hardhat, fuzz, invariants, fork) | `web3-testing` |
 | Solidity vulnerability classes and secure coding patterns | `solidity-security` |
+| Codebase security audit, pen test, or findings report | `security-audit` |
 | Whitepaper / litepaper authoring | `whitepapers` |
 | Public-facing token / staking / governance copy review | `legalizer` |
 
@@ -108,6 +109,7 @@ Constraint -> Default chain
 - **Frontend implementation**: `web3-frontend` (wagmi, viem, RainbowKit, SIWE, transaction UX).
 - **Test writing**: `web3-testing` (Foundry, Hardhat, fuzz, invariants, fork).
 - **Solidity vulnerability prevention at the function level**: `solidity-security`.
+- **Repository vulnerability audit or findings report**: `security-audit`.
 - **Whitepaper structure and citations**: `whitepapers`.
 - **Public-facing token / governance copy review**: `legalizer`.
 - **Pure cryptography research** (new ZK schemes, novel signature constructions): out of scope.

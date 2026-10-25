@@ -14,6 +14,8 @@ description: >-
 
 Vulnerability prevention, secure patterns, gas-safe optimizations, audit preparation.
 
+A codebase audit, pen test, or findings report belongs to `security-audit`. Use this skill for Solidity patterns, secure fixes, and audit preparation.
+
 ---
 
 ## Code Style Rules

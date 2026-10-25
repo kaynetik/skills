@@ -220,6 +220,12 @@
 <td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Production Grafana dashboards: information hierarchy, RED/USE/SLO methods, modern panel JSON, template variables, unified alerting boundaries, and dashboards-as-code (file provisioning, Kubernetes sidecar, Terraform, Foundation SDK/Jsonnet).</td></tr>
+<tr>
+<td rowspan="2" align="center"><b>33</b></td>
+<td><a href="security-audit/SKILL.md"><code>security-audit</code></a></td>
+<td align="right"><img src="https://img.shields.io/badge/pending-scan-yellow?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+</tr>
+<tr><td colspan="2">Source-first security audits for codebases, APIs, services, CLI tools, libraries, and daemons: guidance by default, and a six-phase coverage-led workflow when an audit, pen test, or findings report is requested. Adapted from Cloudflare's security-audit-skill (MIT).</td></tr>
 </table>
 
 The `name` field in each `SKILL.md` must match the parent directory name (see [Agent Skills specification](https://agentskills.io/specification.md)).
@@ -270,7 +276,7 @@ Use the path to your clone instead of `.` if you are not in the repo root.
 [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) can check frontmatter and naming:
 
 ```bash
-for skill in argocd researcher c-cpp-compilers coding-guidelines devops-iac-engineer flowd-dag flowd-rules frontend-design gh grafana-dashboards helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell rca solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
+for skill in argocd researcher c-cpp-compilers coding-guidelines devops-iac-engineer flowd-dag flowd-rules frontend-design gh grafana-dashboards helm kustomize legalizer lua-projects markdown-documentation mermaid-diagrams meta-cognition-parallel podmaster practical-haskell rca security-audit solidity-security svg-gen tdd-red-green-refactor tmux-mastery ultimate-db ultimate-nixos ultimate-rust ultimate-web3 web3-frontend web3-testing whitepapers ziglang; do
   skills-ref validate "./$skill"
 done
 ```
