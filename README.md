@@ -31,7 +31,7 @@
 <tr>
 <td rowspan="2" align="center"><b>1</b></td>
 <td><a href="argocd/SKILL.md"><code>argocd</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W007-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W007 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">ArgoCD GitOps operations: Application/AppProject authoring, ApplicationSet generators, sync strategies, RBAC, SSO, health checks, CLI, and troubleshooting.</td></tr>
 <tr>
@@ -61,7 +61,7 @@
 <tr>
 <td rowspan="2" align="center"><b>6</b></td>
 <td><a href="helm/SKILL.md"><code>helm</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W011-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W011 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Helm 3 chart development, scaffolding, templating, debugging, OCI registries, post-renderers, and production operations.</td></tr>
 <tr>
@@ -91,13 +91,13 @@
 <tr>
 <td rowspan="2" align="center"><b>11</b></td>
 <td><a href="meta-cognition-parallel/SKILL.md"><code>meta-cognition-parallel</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W007-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W007 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Three-layer parallel meta-cognition analysis (experimental).</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>12</b></td>
 <td><a href="podmaster/SKILL.md"><code>podmaster</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W011-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W011 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Container engineering: OCI images and runtimes, Docker and Compose, Podman, Dockerfile/Containerfile optimization, containerd and CRI, debugging and security.</td></tr>
 <tr>
@@ -109,7 +109,7 @@
 <tr>
 <td rowspan="2" align="center"><b>14</b></td>
 <td><a href="solidity-security/SKILL.md"><code>solidity-security</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W009-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W009 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Solidity smart contract security: vulnerability prevention, secure coding patterns, gas-safe optimizations, and audit preparation.</td></tr>
 <tr>
@@ -133,7 +133,7 @@
 <tr>
 <td rowspan="2" align="center"><b>18</b></td>
 <td><a href="ultimate-nixos/SKILL.md"><code>ultimate-nixos</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W013-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W013 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Nix ecosystem: NixOS system config, nixpkgs packaging and maintainer workflow, nix-darwin, Home Manager, flakes, derivations, modules, security hardening, and community processes.</td></tr>
 <tr>
@@ -169,19 +169,19 @@
 <tr>
 <td rowspan="2" align="center"><b>24</b></td>
 <td><a href="ultimate-web3/SKILL.md"><code>ultimate-web3</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W011-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W011 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Web3 architecture and protocol design: chain selection, Solidity architecture (proxies, diamonds, factories), L2/rollup stacks, account abstraction, bridges, oracles, MEV, custody, privacy L1, governance, and deployment ops.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>25</b></td>
 <td><a href="web3-frontend/SKILL.md"><code>web3-frontend</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W009-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W009 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Production dApp frontend in Next.js 16 (App Router) with wagmi v2, viem, and RainbowKit: SSR-safe config with cookie hydration, on-chain reads, transaction lifecycle UX, SIWE auth, ABI codegen, and Next.js 16 cache directives.</td></tr>
 <tr>
 <td rowspan="2" align="center"><b>26</b></td>
 <td><a href="web3-testing/SKILL.md"><code>web3-testing</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/W012-warning-orange?style=for-the-badge&colorA=363a4f" height="28" alt="W012 warning"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Smart contract testing with Foundry (primary) and Hardhat 3: unit tests, parameterized fuzzing, stateful invariants, fork testing, static analysis (Slither, Aderyn), symbolic execution (Halmos), gas snapshots, coverage, and CI integration.</td></tr>
 <tr>
@@ -223,7 +223,7 @@
 <tr>
 <td rowspan="2" align="center"><b>33</b></td>
 <td><a href="security-audit/SKILL.md"><code>security-audit</code></a></td>
-<td align="right"><img src="https://img.shields.io/badge/pending-scan-yellow?style=for-the-badge&colorA=363a4f" height="28" alt="pending scan"></td>
+<td align="right"><img src="https://img.shields.io/badge/clean-pass-brightgreen?style=for-the-badge&colorA=363a4f" height="28" alt="clean"></td>
 </tr>
 <tr><td colspan="2">Source-first security audits for codebases, APIs, services, CLI tools, libraries, and daemons: guidance by default, and a six-phase coverage-led workflow when an audit, pen test, or findings report is requested. Adapted from Cloudflare's security-audit-skill (MIT).</td></tr>
 </table>
